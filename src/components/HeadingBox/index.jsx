@@ -1,8 +1,10 @@
-const Heading = ({ children, rest }) => {
+import { Heading } from "@chakra-ui/react";
+
+const HeadingBox = ({ children, ...rest }) => {
   return (
     <Heading
-      py="16px"
-      px="32px"
+      py="3"
+      px="7"
       bgColor="app.blue.active"
       borderRadius="full"
       display="table"
@@ -16,4 +18,4 @@ const Heading = ({ children, rest }) => {
   );
 };
 
-export default Heading;
+export default HeadingBox;
