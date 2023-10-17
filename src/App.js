@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { SidebarProvider } from "./context/Sidebar.context";
 import HomePage from "./pages/Home.page";
 import JournalPage from "./pages/Journal.page";
+import KelasPage from "./pages/Class.page";
 
 function App() {
   return (
@@ -14,11 +15,11 @@ function App() {
         <DashboardLayout>
           <Router>
             <Switch>
-              <Route path="/journal">
+              <Route path="/kelas/:kelas_id/journal/:journal_id/number/:number_id">
                 <JournalPage />
               </Route>
-              <Route path="/">
-                <HomePage />
+              <Route path="/kelas/:kelas_id/journal/:journal_id">
+                <KelasPage />
               </Route>
             </Switch>
           </Router>

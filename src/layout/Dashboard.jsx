@@ -11,7 +11,7 @@ const DashboardLayout = ({ children }) => {
       <Navbar />
       <Sidebar />
       <Box
-        p="3"
+        px="3"
         pt="70px"
         ml={isOpen ? (isExpand ? "216px" : "72px") : "0"}
         transition="0.3s ease"
