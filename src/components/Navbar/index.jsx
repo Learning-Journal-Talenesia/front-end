@@ -15,7 +15,7 @@ const Navbar = () => {
       left="0"
       bgColor="white"
     >
-      <Box w="70px" h="30px" bgColor="app.purple"></Box>
+      <Box w="70px" h="30px" bgColor="app.purple.active"></Box>
       <Text>Username</Text>
     </Flex>
   );

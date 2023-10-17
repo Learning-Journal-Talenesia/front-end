@@ -13,7 +13,10 @@ const theme = extendTheme({
         hover: "#40EBF6",
         disable: "#80BFD6",
       },
-      purple: "#525FB0",
+      purple: {
+        active: "#525FB0",
+        hover: "#7885D9",
+      },
     },
   },
   components: {
