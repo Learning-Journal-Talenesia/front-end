@@ -1,4 +1,5 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import LogoNav from "../../assets/img/logo/logo-nav.svg";
 
 const Navbar = () => {
   return (
@@ -7,7 +8,7 @@ const Navbar = () => {
       zIndex={1}
       boxShadow="md"
       px="5"
-      py="3"
+      py="1.5"
       w="100%"
       align="center"
       pos="fixed"
@@ -15,7 +16,7 @@ const Navbar = () => {
       left="0"
       bgColor="white"
     >
-      <Box w="70px" h="30px" bgColor="app.purple.active"></Box>
+      <Image src={LogoNav} w="100px"></Image>
       <Text>Username</Text>
     </Flex>
   );
