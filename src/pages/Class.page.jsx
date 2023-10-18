@@ -1,10 +1,11 @@
-import { Box, Button, Center, Flex, Select, Text } from "@chakra-ui/react";
+import { Button, Center, Flex, Image, Select, Text } from "@chakra-ui/react";
 import HeadingBox from "../components/HeadingBox";
+import logoHero from "../assets/img/logo/logo-hero.svg";
 
 const ClassPage = () => {
   return (
     <Center h="calc(100vh - 70px)" flexDirection="column">
-      <Box w="330px" h="200px" bgColor="app.purple.active" mb="20"></Box>
+      <Image src={logoHero} w="330px" h="200px" mb="8"></Image>
       <HeadingBox>Kelas Intensif - Admin Perkantoran</HeadingBox>
       <Text my="3">Learning Journal</Text>
       <Select placeholder="Mentor" w="unset" mb="8">

@@ -4,9 +4,9 @@ import theme from "./theme";
 import DashboardLayout from "./layout/Dashboard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { SidebarProvider } from "./context/Sidebar.context";
-import HomePage from "./pages/Home.page";
 import JournalPage from "./pages/Journal.page";
 import KelasPage from "./pages/Class.page";
+import AdminPage from "./pages/Admin.page";
 
 function App() {
   return (
@@ -20,6 +20,9 @@ function App() {
               </Route>
               <Route path="/kelas/:kelas_id/journal/:journal_id">
                 <KelasPage />
+              </Route>
+              <Route path="/admin">
+                <AdminPage />
               </Route>
             </Switch>
           </Router>
