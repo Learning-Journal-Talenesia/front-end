@@ -2,22 +2,24 @@ import { Box, Flex, IconButton } from "@chakra-ui/react";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import { useSidebar } from "../../context/Sidebar.context";
 import SidebarNumber from "./SidebarNumber";
+import { useParams } from "react-router-dom";
 
 const Sidebar = () => {
-  const { isOpen, isExpand, onExpandClick } = useSidebar();
+  const { isExpand, onExpandClick, sidebarTotalPage } = useSidebar();
+  const { nomor } = useParams();
 
   return (
-    <Box
+    <Flex
       p="16px"
       bgColor="gray.100"
-      w={isExpand ? "216px" : "72px"}
-      maxW={isExpand ? "216px" : "72px"}
-      display={isOpen ? "block" : "none"}
+      w={isExpand ? "236px" : "92px"}
+      maxW={isExpand ? "236px" : "92px"}
       h="100vh"
       maxH="100vh"
       position="fixed"
-      pt="70px"
+      pt="68px"
       transition="0.3s ease"
+      direction="column"
     >
       <Flex justifyContent="flex-end" mb="3">
         <IconButton
@@ -32,12 +34,17 @@ const Sidebar = () => {
         alignContent="flex-start"
         justifyContent="flex-start"
         gap="8px"
+        flex="1"
+        overflowY="scroll"
       >
-        {Array.from({ length: 10 }).map((_, index) => (
-          <SidebarNumber number={index + 1} isActive={index === 0} />
+        {Array.from({ length: sidebarTotalPage }).map((_, index) => (
+          <SidebarNumber
+            number={index + 1}
+            isActive={index === Number(nomor - 1)}
+          />
         ))}
       </Flex>
-    </Box>
+    </Flex>
   );
 };
 

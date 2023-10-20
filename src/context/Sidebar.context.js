@@ -1,37 +1,34 @@
 import { createContext, useCallback, useContext, useState } from "react";
 
 const SidebarContext = createContext({
-  isOpen: false,
   isExpand: false,
-  onOpen: () => {},
-  onClose: () => {},
   onExpandClick: () => {},
+  sidebarTotalPage: [],
+  setSidebarTotalPage: () => {},
+  sidebarData: { kelas_name: "", tema_name: "" },
+  setSidebarData: () => {},
 });
 SidebarContext.displayName = "SidebarContext";
 
 const SidebarProvider = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isExpand, setIsExpand] = useState(false);
-
-  const onOpen = useCallback(() => {
-    setIsExpand(false);
-    setIsOpen(true);
-  }, []);
-
-  const onClose = useCallback(() => {
-    setIsExpand(false);
-    setIsOpen(false);
-  }, []);
+  const [sidebarTotalPage, setSidebarTotalPage] = useState(0);
+  const [sidebarData, setSidebarData] = useState({});
 
   const onExpandClick = useCallback(() => {
-    if (isOpen) {
-      setIsExpand(!isExpand);
-    }
-  }, [isExpand, isOpen]);
+    setIsExpand(!isExpand);
+  }, [isExpand]);
 
   return (
     <SidebarContext.Provider
-      value={{ isOpen, isExpand, onOpen, onClose, onExpandClick }}
+      value={{
+        isExpand,
+        onExpandClick,
+        sidebarTotalPage,
+        setSidebarTotalPage,
+        sidebarData,
+        setSidebarData,
+      }}
       {...props}
     />
   );
