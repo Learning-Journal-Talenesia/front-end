@@ -8,6 +8,7 @@ import JournalPage from "./pages/Journal.page";
 import AdminPage from "./pages/Admin.page";
 import Sidebar from "./components/Sidebar";
 import ClassPage from "./pages/Class.page";
+import CompletePage from "./pages/Complete.page";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             </Route>
             <Route path="/class/:class_id/theme/:theme_id">
               <ClassPage />
+            </Route>
+            <Route path="/complete">
+              <CompletePage />
             </Route>
             <Route path="/admin">
               <AdminPage />
