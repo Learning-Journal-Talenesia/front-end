@@ -1,6 +1,5 @@
 import {
   FormControl,
-  FormLabel,
   HStack,
   Radio,
   RadioGroup,
@@ -8,19 +7,13 @@ import {
 } from "@chakra-ui/react";
 import Emote from "./Emote";
 
-const QEmote = ({ data }) => {
+const EmoteContent = ({ content }) => {
   return (
     <FormControl mb="3" as="fieldset">
-      <FormLabel as="legend">{data.text}</FormLabel>
       <RadioGroup>
         <HStack spacing="3">
-          {data.emote.map((name, index) => (
-            <VStack
-              key={index}
-              fontSize="4xl"
-              textColor="app.blue.active
-            "
-            >
+          {content.map((name, index) => (
+            <VStack key={index} fontSize="4xl" textColor="app.blue.active">
               <Emote name={name} />
               <Radio value={name}></Radio>
             </VStack>
@@ -31,4 +24,4 @@ const QEmote = ({ data }) => {
   );
 };
 
-export default QEmote;
+export default EmoteContent;

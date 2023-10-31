@@ -5,8 +5,10 @@ const SidebarContext = createContext({
   onExpandClick: () => {},
   sidebarTotalPage: [],
   setSidebarTotalPage: () => {},
-  sidebarData: { kelas_name: "", tema_name: "" },
+  sidebarData: { class_name: "", theme_name: "" },
   setSidebarData: () => {},
+  journey: [],
+  setJourney: [],
 });
 SidebarContext.displayName = "SidebarContext";
 
@@ -14,6 +16,7 @@ const SidebarProvider = (props) => {
   const [isExpand, setIsExpand] = useState(false);
   const [sidebarTotalPage, setSidebarTotalPage] = useState(0);
   const [sidebarData, setSidebarData] = useState({});
+  const [journey, setJourney] = useState([]);
 
   const onExpandClick = useCallback(() => {
     setIsExpand(!isExpand);
@@ -28,6 +31,8 @@ const SidebarProvider = (props) => {
         setSidebarTotalPage,
         sidebarData,
         setSidebarData,
+        journey,
+        setJourney,
       }}
       {...props}
     />

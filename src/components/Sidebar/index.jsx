@@ -1,12 +1,49 @@
-import { Box, Flex, IconButton } from "@chakra-ui/react";
+import { Flex, IconButton } from "@chakra-ui/react";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import { useSidebar } from "../../context/Sidebar.context";
 import SidebarNumber from "./SidebarNumber";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import { useEffect, useMemo } from "react";
+import dummyData from "../../dummyData/data";
 
 const Sidebar = () => {
-  const { isExpand, onExpandClick, sidebarTotalPage } = useSidebar();
-  const { nomor } = useParams();
+  const {
+    isExpand,
+    onExpandClick,
+    sidebarTotalPage,
+    setSidebarTotalPage,
+    setSidebarData,
+    setJourney,
+  } = useSidebar();
+
+  const { class_id, theme_id, number } = useParams();
+  const history = useHistory();
+
+  useEffect(() => {
+    const theme = dummyData.themes.filter(
+      ({ id }) => id === Number(theme_id)
+    )[0];
+    setSidebarTotalPage(theme.journal.length);
+    setSidebarData({ class_name: dummyData.name, theme_name: theme.name });
+    setJourney(
+      dummyData.themes.map((theme) => ({ id: theme.id, name: theme.name }))
+    );
+  }, [setJourney, setSidebarData, setSidebarTotalPage, theme_id]);
+
+  const numberComponent = useMemo(() => {
+    return Array.from({ length: sidebarTotalPage }).map((_, index) => (
+      <SidebarNumber
+        key={index}
+        index={index}
+        isActive={index === Number(number) - 1}
+        onClick={() => {
+          history.push(
+            `/class/${class_id}/theme/${theme_id}/number/${index + 1}`
+          );
+        }}
+      />
+    ));
+  }, [class_id, history, number, sidebarTotalPage, theme_id]);
 
   return (
     <Flex
@@ -37,12 +74,7 @@ const Sidebar = () => {
         flex="1"
         overflowY="scroll"
       >
-        {Array.from({ length: sidebarTotalPage }).map((_, index) => (
-          <SidebarNumber
-            number={index + 1}
-            isActive={index === Number(nomor - 1)}
-          />
-        ))}
+        {numberComponent}
       </Flex>
     </Flex>
   );

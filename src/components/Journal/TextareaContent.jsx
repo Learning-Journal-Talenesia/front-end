@@ -1,12 +1,12 @@
 import { FormControl, FormLabel, Textarea } from "@chakra-ui/react";
 
-const QTextarea = ({ data }) => {
+const TextareaContent = ({ content }) => {
   return (
     <FormControl mb="3">
-      <FormLabel>{data.text}</FormLabel>
+      <FormLabel>{content}</FormLabel>
       <Textarea placeholder="Silahkan tulis di sini" />
     </FormControl>
   );
 };
 
-export default QTextarea;
+export default TextareaContent;

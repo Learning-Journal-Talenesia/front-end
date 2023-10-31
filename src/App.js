@@ -5,9 +5,9 @@ import DashboardLayout from "./layout/Dashboard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { SidebarProvider } from "./context/Sidebar.context";
 import JournalPage from "./pages/Journal.page";
-import KelasPage from "./pages/Class.page";
 import AdminPage from "./pages/Admin.page";
 import Sidebar from "./components/Sidebar";
+import ClassPage from "./pages/Class.page";
 
 function App() {
   return (
@@ -15,14 +15,14 @@ function App() {
       <DashboardLayout>
         <Router>
           <Switch>
-            <Route path="/kelas/:kelas_id/tema/:tema_id/nomor/:nomor">
+            <Route path="/class/:class_id/theme/:theme_id/number/:number">
               <SidebarProvider>
                 <Sidebar />
                 <JournalPage />
               </SidebarProvider>
             </Route>
-            <Route path="/kelas/:kelas_id/tema/:tema_id">
-              <KelasPage />
+            <Route path="/class/:class_id/theme/:theme_id">
+              <ClassPage />
             </Route>
             <Route path="/admin">
               <AdminPage />
