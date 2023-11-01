@@ -1,4 +1,12 @@
-import { Button, Center, Flex, Image, Select, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Center,
+  Flex,
+  Image,
+  Select,
+  Skeleton,
+  Text,
+} from "@chakra-ui/react";
 import HeadingBox from "../components/HeadingBox";
 import logoHero from "../assets/img/logo/logo-hero.svg";
 import { useParams, useHistory } from "react-router-dom";
@@ -22,6 +30,15 @@ const ClassPage = () => {
 
   return (
     <Center h="calc(100vh - 70px)" flexDirection="column">
+      {/* <Skeleton height="200px" width="330px" mb="8" />
+      <Skeleton height="50px" width="500px" borderRadius="full" />
+      <Skeleton height="20px" width="150px" my="3" />
+      <Skeleton height="40px" width="120px" mb="8" />
+      <Flex gap="3">
+        <Skeleton height="40px" width="100px" borderRadius="full" />
+        <Skeleton height="40px" width="100px" borderRadius="full" />
+      </Flex> */}
+
       <Image src={logoHero} w="330px" h="200px" mb="8"></Image>
       <HeadingBox>{data.class_name}</HeadingBox>
       <Text my="3" textColor="app.blue.active" fontWeight="bold">

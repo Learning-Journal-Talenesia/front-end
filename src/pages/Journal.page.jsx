@@ -33,7 +33,6 @@ const JournalPage = () => {
     );
   }, [number, theme_id]);
 
-  console.log(data);
   return (
     <>
       <Flex

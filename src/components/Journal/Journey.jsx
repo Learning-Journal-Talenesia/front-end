@@ -1,4 +1,15 @@
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import {
+  Box,
+  Step,
+  StepIcon,
+  StepIndicator,
+  StepNumber,
+  StepSeparator,
+  StepStatus,
+  StepTitle,
+  Stepper,
+  useSteps,
+} from "@chakra-ui/react";
 import { useSidebar } from "../../context/Sidebar.context";
 import { useParams } from "react-router-dom";
 import { useMemo } from "react";
@@ -17,43 +28,45 @@ const Journey = () => {
     return res;
   }, [journey, theme_id]);
 
+  const { activeStep } = useSteps({
+    index: themeIndex,
+    count: journey.length,
+  });
+
   return (
-    <Box>
+    <Stepper
+      index={activeStep}
+      orientation="vertical"
+      height="400px"
+      gap="0"
+      width="100%"
+    >
       {journey.map(({ id, name }, index) => (
-        <Flex
+        <Step
           key={id}
-          gap="3"
-          alignItems="center"
-          direction={index % 2 === 1 ? "row-reverse" : "row"}
+          flexDirection={index % 2 === 1 ? "row-reverse" : "row"}
+          width="100%"
+          minH="100px"
         >
-          <Heading
-            flex="1"
-            size="md"
-            textAlign={index % 2 === 1 ? "start" : "end"}
-          >
-            {name}
-          </Heading>
-          <Box position="relative" w="40px">
-            <Box bgColor="app.green.active" w="20px" mx="auto" h="120px"></Box>
-            <Box
-              borderRadius="full"
-              bgColor={
-                index === themeIndex
-                  ? "app.blue.hover"
-                  : index < themeIndex
-                  ? "app.blue.active"
-                  : "app.blue.disable"
-              }
-              w="40px"
-              h="40px"
-              position="absolute"
-              top="40px"
-            ></Box>
-          </Box>
           <Box flex="1"></Box>
-        </Flex>
+          <Box position="relative">
+            <StepIndicator>
+              <StepStatus
+                complete={<StepIcon />}
+                incomplete={<StepNumber />}
+                active={<StepNumber />}
+              />
+            </StepIndicator>
+
+            <StepSeparator />
+          </Box>
+
+          <Box flex="1" textAlign={index % 2 === 1 ? "end" : "start"}>
+            <StepTitle>{name}</StepTitle>
+          </Box>
+        </Step>
       ))}
-    </Box>
+    </Stepper>
   );
 };
 
