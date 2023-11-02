@@ -55,8 +55,8 @@ const Content = ({ type, content }) => {
     case "ol":
       return (
         <OrderedList>
-          {content.map((text) => (
-            <ListItem>{text}</ListItem>
+          {content.map((text, index) => (
+            <ListItem key={index}>{text}</ListItem>
           ))}
         </OrderedList>
       );

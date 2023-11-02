@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useSidebar } from "../context/Sidebar.context";
 import {
   Box,
@@ -11,10 +11,11 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Skeleton,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import dummyData from "../dummyData/data";
 import Journal from "../components/Journal";
 import HeadingBox from "../components/HeadingBox";
@@ -24,6 +25,7 @@ const JournalPage = () => {
   const { class_id, theme_id, number } = useParams();
   const [data, setData] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const history = useHistory();
 
   useEffect(() => {
     setData(
@@ -32,6 +34,26 @@ const JournalPage = () => {
       ]
     );
   }, [number, theme_id]);
+
+  const backOnClick = () => {
+    if (Number(number) === 1) {
+      history.push(`/class/${class_id}/theme/${theme_id}`);
+    } else {
+      history.push(
+        `/class/${class_id}/theme/${theme_id}/number/${Number(number) - 1}`
+      );
+    }
+  };
+
+  const nextOnClick = () => {
+    if (Number(number) === sidebarTotalPage) {
+      onOpen();
+    } else {
+      history.push(
+        `/class/${class_id}/theme/${theme_id}/number/${Number(number) + 1}`
+      );
+    }
+  };
 
   return (
     <>
@@ -46,6 +68,30 @@ const JournalPage = () => {
         ml={isExpand ? "236px" : "92px"}
         transition="0.3s ease"
       >
+        {/* <Box pr="6">
+          <Skeleton w="400px" h="50px" borderRadius="full" />
+          <Flex mt="3" justifyContent="space-between">
+            <Skeleton w="150px" h="20px" />
+            <Skeleton w="40px" h="20px" />
+          </Flex>
+        </Box>
+
+        <Box flex="1" overflowY="scroll" pr="3">
+          <Flex direction="column" gap="3">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <Fragment key={index}>
+                <Skeleton w="300px" h="24px" />
+                <Skeleton w="100%" h="80px" />
+              </Fragment>
+            ))}
+          </Flex>
+        </Box>
+
+        <Flex justifyContent="space-between" pr="6">
+          <Skeleton w="100px" h="40px" borderRadius="full" />
+          <Skeleton w="100px" h="40px" borderRadius="full" />
+        </Flex> */}
+
         <Box pr="6">
           <HeadingBox size="md">{sidebarData.class_name}</HeadingBox>
           <Flex
@@ -60,11 +106,10 @@ const JournalPage = () => {
         </Box>
         <Journal data={data} />
         <Flex justifyContent="space-between" pr="6">
-          <Button variant="secondary">Kembali</Button>
-          <Button
-            variant="primary"
-            onClick={Number(number) === sidebarTotalPage ? onOpen : () => {}}
-          >
+          <Button variant="secondary" onClick={backOnClick}>
+            Kembali
+          </Button>
+          <Button variant="primary" onClick={nextOnClick}>
             Lanjut
           </Button>
         </Flex>

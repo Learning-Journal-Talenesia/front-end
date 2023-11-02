@@ -1,4 +1,4 @@
-import { Flex, IconButton } from "@chakra-ui/react";
+import { Flex, IconButton, Skeleton } from "@chakra-ui/react";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import { useSidebar } from "../../context/Sidebar.context";
 import SidebarNumber from "./SidebarNumber";
@@ -74,6 +74,10 @@ const Sidebar = () => {
         flex="1"
         overflowY="scroll"
       >
+        {Array.from({ length: 10 }).map((_, index) => (
+          <Skeleton key={index} w="40px" h="40px" borderRadius="full" />
+        ))}
+
         {numberComponent}
       </Flex>
     </Flex>
