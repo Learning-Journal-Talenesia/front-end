@@ -18,10 +18,10 @@ const QuestionProvider = (props) => {
   const [answer, setAnswer] = useState({});
   const { theme_id } = useParams();
 
-  const onAnswerChange = (pageIndex, questionIndex, answerList) => {
+  const onAnswerChange = (name, value) => {
     setAnswer({
       ...answer,
-      [pageIndex]: { ...answer[pageIndex], [questionIndex]: answerList },
+      [name]: value,
     });
   };
 
@@ -36,26 +36,29 @@ const QuestionProvider = (props) => {
 
     const tempAnswer = {};
     theme.journal.forEach((arr, i) => {
-      tempAnswer[i] = {};
-      arr.forEach(({ type }, j) => {
+      arr.forEach(({ type, content }, j) => {
         switch (type) {
           case "textarea":
-            tempAnswer[i][j] = [""];
+            tempAnswer[`${i}-${j}`] = "";
             break;
           case "emote":
-            tempAnswer[i][j] = [""];
+            tempAnswer[`${i}-${j}`] = "";
             break;
           case "habit":
-            tempAnswer[i][j] = ["", "", "", "", "", "", "", "", "", ""];
+            Array.from({ length: 5 }).forEach((_, k) => {
+              tempAnswer[`${i}-${j}-${k}-0`] = "";
+              tempAnswer[`${i}-${j}-${k}-1`] = "";
+            });
             break;
           case "input-ol":
-            tempAnswer[i][j] = ["", "", "", "", "", ""];
+            content.forEach((_, k) => {
+              tempAnswer[`${i}-${j}-${k}`] = "";
+            });
             break;
           case "calendar":
-            tempAnswer[i][j] = [];
+            tempAnswer[`${i}-${j}`] = [];
             break;
           default:
-            tempAnswer[i][j] = [""];
             break;
         }
       });

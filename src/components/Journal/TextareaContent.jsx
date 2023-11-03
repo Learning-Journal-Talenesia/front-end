@@ -4,12 +4,16 @@ import { useCallback, useMemo } from "react";
 
 const TextareaContent = ({ content, number, questionIndex }) => {
   const { answer, onAnswerChange } = useQuestion();
+  const name = useMemo(
+    () => `${number - 1}-${questionIndex}`,
+    [number, questionIndex]
+  );
 
   const onChange = useCallback(
     (e) => {
-      onAnswerChange(number - 1, questionIndex, [e.target.value]);
+      onAnswerChange(name, e.target.value);
     },
-    [number, onAnswerChange, questionIndex]
+    [name, onAnswerChange]
   );
 
   const component = useMemo(() => {
@@ -18,7 +22,7 @@ const TextareaContent = ({ content, number, questionIndex }) => {
         <FormLabel>{content}</FormLabel>
         <Textarea
           placeholder="Silahkan tulis di sini"
-          value={answer[number - 1][questionIndex][0]}
+          value={answer[name]}
           onChange={onChange}
         />
       </FormControl>
