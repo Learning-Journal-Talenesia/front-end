@@ -19,9 +19,11 @@ import { useParams, useHistory } from "react-router-dom";
 import dummyData from "../dummyData/data";
 import Journal from "../components/Journal";
 import HeadingBox from "../components/HeadingBox";
+import { useQuestion } from "../context/Question.context";
 
 const JournalPage = () => {
-  const { isExpand, sidebarTotalPage, sidebarData } = useSidebar();
+  const { isExpand, sidebarTotalPage } = useSidebar();
+  const { sidebarData, answer } = useQuestion();
   const { class_id, theme_id, number } = useParams();
   const [data, setData] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -104,7 +106,7 @@ const JournalPage = () => {
             <Text>{`${number} / ${sidebarTotalPage}`}</Text>
           </Flex>
         </Box>
-        <Journal data={data} />
+        <Journal data={data} number={Number(number)} />
         <Flex justifyContent="space-between" pr="6">
           <Button variant="secondary" onClick={backOnClick}>
             Kembali
@@ -120,7 +122,10 @@ const JournalPage = () => {
         <ModalContent>
           <ModalHeader>Selesai</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>Pastikan data yang sudah Anda isi sudah benar</ModalBody>
+          <ModalBody>
+            Pastikan data yang sudah Anda isi sudah benar,{" "}
+            {JSON.stringify(answer)}
+          </ModalBody>
           <ModalFooter>
             <ModalFooter>
               <Button onClick={onClose} mr={3} variant="secondary" size="sm">

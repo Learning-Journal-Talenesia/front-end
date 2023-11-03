@@ -1,6 +1,6 @@
 import { FormControl, Input, ListItem, OrderedList } from "@chakra-ui/react";
 
-const InputOL = ({ content }) => {
+const InputOL = ({ content, questionIndex }) => {
   return (
     <OrderedList>
       {content.map((text, index) => (

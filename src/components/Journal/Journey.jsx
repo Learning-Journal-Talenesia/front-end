@@ -10,12 +10,12 @@ import {
   Stepper,
   useSteps,
 } from "@chakra-ui/react";
-import { useSidebar } from "../../context/Sidebar.context";
 import { useParams } from "react-router-dom";
 import { useMemo } from "react";
+import { useQuestion } from "../../context/Question.context";
 
 const Journey = () => {
-  const { journey } = useSidebar();
+  const { journey } = useQuestion();
   const { theme_id } = useParams();
   const themeIndex = useMemo(() => {
     let res = 0;

@@ -3,32 +3,13 @@ import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import { useSidebar } from "../../context/Sidebar.context";
 import SidebarNumber from "./SidebarNumber";
 import { useParams, useHistory } from "react-router-dom";
-import { useEffect, useMemo } from "react";
-import dummyData from "../../dummyData/data";
+import { useMemo } from "react";
 
 const Sidebar = () => {
-  const {
-    isExpand,
-    onExpandClick,
-    sidebarTotalPage,
-    setSidebarTotalPage,
-    setSidebarData,
-    setJourney,
-  } = useSidebar();
+  const { isExpand, onExpandClick, sidebarTotalPage } = useSidebar();
 
   const { class_id, theme_id, number } = useParams();
   const history = useHistory();
-
-  useEffect(() => {
-    const theme = dummyData.themes.filter(
-      ({ id }) => id === Number(theme_id)
-    )[0];
-    setSidebarTotalPage(theme.journal.length);
-    setSidebarData({ class_name: dummyData.name, theme_name: theme.name });
-    setJourney(
-      dummyData.themes.map((theme) => ({ id: theme.id, name: theme.name }))
-    );
-  }, [setJourney, setSidebarData, setSidebarTotalPage, theme_id]);
 
   const numberComponent = useMemo(() => {
     return Array.from({ length: sidebarTotalPage }).map((_, index) => (

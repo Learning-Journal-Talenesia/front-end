@@ -12,7 +12,7 @@ import EmoteContent from "./EmoteContent";
 import InputOL from "./InputOL";
 import Habit from "./Habit";
 
-const Content = ({ type, content }) => {
+const Content = ({ type, content, number, questionIndex }) => {
   switch (type) {
     case "h1":
       return (
@@ -79,13 +79,31 @@ const Content = ({ type, content }) => {
     case "journey":
       return <Journey />;
     case "textarea":
-      return <TextareaContent content={content[0]} />;
+      return (
+        <TextareaContent
+          content={content[0]}
+          number={number}
+          questionIndex={questionIndex}
+        />
+      );
     case "emote":
-      return <EmoteContent content={content} />;
+      return (
+        <EmoteContent
+          content={content}
+          number={number}
+          questionIndex={questionIndex}
+        />
+      );
     case "habit":
-      return <Habit />;
+      return <Habit number={number} questionIndex={questionIndex} />;
     case "input-ol":
-      return <InputOL content={content} />;
+      return (
+        <InputOL
+          content={content}
+          number={number}
+          questionIndex={questionIndex}
+        />
+      );
     case "calendar":
       return <></>;
     default:

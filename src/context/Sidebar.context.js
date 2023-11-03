@@ -1,26 +1,36 @@
-import { createContext, useCallback, useContext, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import dummyData from "../dummyData/data";
+import { useParams } from "react-router-dom";
 
 const SidebarContext = createContext({
   isExpand: false,
   onExpandClick: () => {},
   sidebarTotalPage: [],
   setSidebarTotalPage: () => {},
-  sidebarData: { class_name: "", theme_name: "" },
-  setSidebarData: () => {},
-  journey: [],
-  setJourney: [],
 });
 SidebarContext.displayName = "SidebarContext";
 
 const SidebarProvider = (props) => {
   const [isExpand, setIsExpand] = useState(false);
   const [sidebarTotalPage, setSidebarTotalPage] = useState(0);
-  const [sidebarData, setSidebarData] = useState({});
-  const [journey, setJourney] = useState([]);
+  const { theme_id } = useParams();
 
   const onExpandClick = useCallback(() => {
     setIsExpand(!isExpand);
   }, [isExpand]);
+
+  useEffect(() => {
+    const theme = dummyData.themes.filter(
+      ({ id }) => id === Number(theme_id)
+    )[0];
+    setSidebarTotalPage(theme.journal.length);
+  }, [setSidebarTotalPage, theme_id]);
 
   return (
     <SidebarContext.Provider
@@ -29,10 +39,6 @@ const SidebarProvider = (props) => {
         onExpandClick,
         sidebarTotalPage,
         setSidebarTotalPage,
-        sidebarData,
-        setSidebarData,
-        journey,
-        setJourney,
       }}
       {...props}
     />

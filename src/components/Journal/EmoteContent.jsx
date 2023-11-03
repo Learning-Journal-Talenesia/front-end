@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import Emote from "./Emote";
 
-const EmoteContent = ({ content }) => {
+const EmoteContent = ({ content, questionIndex }) => {
   return (
     <FormControl mb="3" as="fieldset">
       <RadioGroup>

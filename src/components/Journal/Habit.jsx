@@ -10,7 +10,7 @@ import {
   Tr,
 } from "@chakra-ui/react";
 
-const Habit = () => {
+const Habit = ({ questionIndex }) => {
   return (
     <TableContainer>
       <Table size="sm" css={{ tableLayout: "fixed" }}>

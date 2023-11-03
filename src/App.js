@@ -9,6 +9,7 @@ import AdminPage from "./pages/Admin.page";
 import Sidebar from "./components/Sidebar";
 import ClassPage from "./pages/Class.page";
 import CompletePage from "./pages/Complete.page";
+import { QuestionProvider } from "./context/Question.context";
 
 function App() {
   return (
@@ -18,8 +19,10 @@ function App() {
           <Switch>
             <Route path="/class/:class_id/theme/:theme_id/number/:number">
               <SidebarProvider>
-                <Sidebar />
-                <JournalPage />
+                <QuestionProvider>
+                  <Sidebar />
+                  <JournalPage />
+                </QuestionProvider>
               </SidebarProvider>
             </Route>
             <Route path="/class/:class_id/theme/:theme_id">
