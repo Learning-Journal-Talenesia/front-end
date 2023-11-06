@@ -20,7 +20,7 @@ const Journal = ({ data, number }) => {
     );
   } else if (data.length === 1) {
     return (
-      <Center flex="1" pr="6" textAlign="center">
+      <Center flex="1" pr="6" textAlign="center" overflowY="scroll">
         <Content
           type={data[0].type}
           content={data[0].content}

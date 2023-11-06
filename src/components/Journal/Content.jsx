@@ -9,8 +9,10 @@ import {
 import Journey from "./Journey";
 import TextareaContent from "./TextareaContent";
 import EmoteContent from "./EmoteContent";
-import InputOL from "./InputOL";
 import Habit from "./Habit";
+import CheckboxContent from "./CheckboxContent";
+import NewHabit from "./NewHabit";
+import Reward from "./Reward";
 
 const Content = ({ type, content, number, questionIndex }) => {
   switch (type) {
@@ -95,17 +97,21 @@ const Content = ({ type, content, number, questionIndex }) => {
         />
       );
     case "habit":
-      return <Habit number={number} questionIndex={questionIndex} />;
-    case "input-ol":
+      return <Habit />;
+    case "new_habit":
+      return <NewHabit />;
+    case "reward":
+      return <Reward />;
+    case "calendar":
+      return <></>;
+    case "checkbox":
       return (
-        <InputOL
+        <CheckboxContent
           content={content}
           number={number}
           questionIndex={questionIndex}
         />
       );
-    case "calendar":
-      return <></>;
     default:
       return <></>;
   }

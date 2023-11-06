@@ -36,7 +36,7 @@ const QuestionProvider = (props) => {
 
     const tempAnswer = {};
     theme.journal.forEach((arr, i) => {
-      arr.forEach(({ type, content }, j) => {
+      arr.forEach(({ type }, j) => {
         switch (type) {
           case "textarea":
             tempAnswer[`${i}-${j}`] = "";
@@ -45,17 +45,27 @@ const QuestionProvider = (props) => {
             tempAnswer[`${i}-${j}`] = "";
             break;
           case "habit":
+            tempAnswer[`habit`] = {};
             Array.from({ length: 5 }).forEach((_, k) => {
-              tempAnswer[`${i}-${j}-${k}-0`] = "";
-              tempAnswer[`${i}-${j}-${k}-1`] = "";
+              tempAnswer[`habit`][k] = { bad: "", good: "" };
             });
             break;
-          case "input-ol":
-            content.forEach((_, k) => {
-              tempAnswer[`${i}-${j}-${k}`] = "";
+          case "new_habit":
+            tempAnswer[`new_habit`] = {};
+            Array.from({ length: 3 }).forEach((_, k) => {
+              tempAnswer[`new_habit`][k] = "";
+            });
+            break;
+          case "reward":
+            tempAnswer[`reward`] = {};
+            Array.from({ length: 3 }).forEach((_, k) => {
+              tempAnswer[`reward`][k] = "";
             });
             break;
           case "calendar":
+            tempAnswer[`calendar`] = [];
+            break;
+          case "checkbox":
             tempAnswer[`${i}-${j}`] = [];
             break;
           default:

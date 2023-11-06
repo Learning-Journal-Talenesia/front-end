@@ -4,10 +4,13 @@ const type = [
   "ol",
   "image",
   "textarea",
+  "journey",
   "emote",
   "habit",
-  "input-ol",
+  "new_habit",
+  "reward",
   "calendar",
+  "checkbox",
 ];
 
 const dummyData = {
@@ -73,13 +76,7 @@ const dummyData = {
             ],
           },
         ],
-        [
-          {
-            type: "h1",
-            content: ["Perjalanan Belajar Kita"],
-          },
-          { type: "journey", content: [""] },
-        ],
+        [{ type: "journey", content: [""] }],
         [
           { type: "h1", content: ["Cara Mengisi Jurnal"] },
           {
@@ -216,8 +213,8 @@ const dummyData = {
             ],
           },
           {
-            type: "input-ol",
-            content: ["kebiasaan 1", "kebiasaan 2", "kebiasaan 3"],
+            type: "new_habit",
+            content: [],
           },
           {
             type: "p",
@@ -226,12 +223,8 @@ const dummyData = {
             ],
           },
           {
-            type: "input-ol",
-            content: [
-              "Hadiah untuk kebiasaan 1",
-              "Hadiah untuk kebiasaan 2",
-              "Hadiah untuk kebiasaan 3",
-            ],
+            type: "reward",
+            content: [],
           },
         ],
         [
@@ -249,7 +242,7 @@ const dummyData = {
           },
           {
             type: "calendar",
-            content: [],
+            content: [""],
           },
         ],
       ],
@@ -257,42 +250,247 @@ const dummyData = {
     {
       id: 1,
       name: "Tema 1: Berkarir Sebagai Admin",
-      journal: [],
+      journal: [
+        [{ type: "journey", content: [""] }],
+        [
+          {
+            type: "p",
+            content: [
+              "Gambar mana yang paling menggambarkan perasaanmu mengikuti kelas pertama?",
+            ],
+          },
+          {
+            type: "emote",
+            content: [
+              "FaFaceGrin",
+              "FaFaceSmileBeam",
+              "FaFaceRollingEyes",
+              "FaFaceFrownOpen",
+              "FaFaceFrown",
+            ],
+          },
+          { type: "textarea", content: ["Mengapa kamu memilih gambar itu?"] },
+        ],
+        [
+          {
+            type: "textarea",
+            content: [
+              "Apa hal yang paling menarik dari topik pembelajaran “berkarir sebagai admin”?",
+            ],
+          },
+          {
+            type: "textarea",
+            content: [
+              "Setelah belajar berkarir sebagai admin, apa hal yang membuatmu tertarik untuk belajar lagi tentang profesi admin?",
+            ],
+          },
+        ],
+        [
+          {
+            type: "p",
+            content: [
+              "Sebelum mengikuti kelas ini, salah satu peserta bernama Ale sudah pernah belajar mengenai profesi menjadi admin. Sayangnya beberapa bulan kemudian ia lupa apa yang dipelajari karena tidak pernah mempraktekkannya.",
+            ],
+          },
+          {
+            type: "p",
+            content: [
+              "Supaya belajarmu tidak sia-sia seperti Ale, materi apa saja yang akan kamu praktekkan? Bagaimana kamu akan mempraktekkannya?",
+            ],
+          },
+          {
+            type: "textarea",
+            content: ["Silahkan tulis disini"],
+          },
+        ],
+        [
+          {
+            type: "textarea",
+            content: [
+              "Coba ingat-ingat lagi masa sekolah dulu. Biasanya, hal apa saja yang membuatmu semangat untuk belajar?",
+            ],
+          },
+          {
+            type: "textarea",
+            content: ["Hal apa saja yang biasanya membuat kamu malas belajar?"],
+          },
+          {
+            type: "textarea",
+            content: [
+              "Kira-kira jika kemalasan kembali menyerang, apa yang kamu lakukan agar bisa kembali semangat belajar?",
+            ],
+          },
+          {
+            type: "p",
+            content: [
+              "Tips: kamu bisa minta saran kepada mentor atau teman kelompokmu jika butuh ide untuk mengisi halaman ini",
+            ],
+          },
+        ],
+      ],
     },
     {
       id: 2,
       name: "Tema 2: Persiapan keahlian sebagai admin",
-      journal: [],
+      journal: [
+        [{ type: "journey", content: [] }],
+        [
+          {
+            type: "p",
+            content: [
+              "Bagaimana perasaanmu saat mengikuti kelas Persiapan Keahlian Sebagai Admin?",
+            ],
+          },
+          {
+            type: "emote",
+            content: [
+              "FaFaceGrin",
+              "FaFaceSmileBeam",
+              "FaFaceRollingEyes",
+              "FaFaceFrownOpen",
+              "FaFaceFrown",
+            ],
+          },
+          { type: "textarea", content: ["Mengapa kamu memilih gambar itu?"] },
+        ],
+        [
+          {
+            type: "textarea",
+            content: ["Apa saja materi yang menurut kamu masih membingungkan?"],
+          },
+          {
+            type: "p",
+            content: [
+              "Ale mengalami kebingungan dengan rumus-rumus excel. Meskipun sudah diberikan contoh beberapa kali, Ale tetap saja kesulitan dalam menuliskan rumus Excel. Tetapi Ale tidak ingin menyerah. Ia menonton ulang video pembelajaran dan meminta bantuan mentor.",
+            ],
+          },
+          {
+            type: "p",
+            content: [
+              "Apa yang akan kamu lakukan untuk memahami hal-hal kamu masih merasa bingung?",
+            ],
+          },
+          {
+            type: "textarea",
+            content: ["Silahkan tulis disini"],
+          },
+        ],
+      ],
     },
     {
       id: 3,
       name: "Tema 3: Mengerjakan Tugas-Tugas  Administratif",
-      journal: [],
+      journal: [
+        [{ type: "journey", content: [] }],
+        [
+          {
+            type: "p",
+            content: [
+              "Bagaimana perasaanmu saat mengikuti kelas Mengerjakan tugas-tugas administratif?",
+            ],
+          },
+          {
+            type: "emote",
+            content: [
+              "FaFaceGrin",
+              "FaFaceSmileBeam",
+              "FaFaceRollingEyes",
+              "FaFaceFrownOpen",
+              "FaFaceFrown",
+            ],
+          },
+          { type: "textarea", content: ["Mengapa kamu memilih gambar itu?"] },
+        ],
+        [
+          {
+            type: "p",
+            content: [
+              "Bersama Talenesia, minggu ini Ale belajar membuat database barang-barang yang ada di kantor. Setelah Ale tahu cara membuat database, Ale bertekad untuk menerapkan dalam kegiatan sehari-hari. Ia pun membuat database untuk mendata stok bahan makanan di rumahnya agar terpantau tanggal kadaluarsa bahan tersebut.",
+            ],
+          },
+          {
+            type: "p",
+            content: [
+              "Setelah mempelajari berbagai tugas administrasi, apa yang akan kamu terapkan di kegiatan sehari-hari untuk meningkatkan keterampilanmu?",
+            ],
+          },
+          { type: "textarea", content: ["Silahkan tulis disini"] },
+        ],
+        [
+          {
+            type: "p",
+            content: ["Tandai mana saja yang sesuai dengan keadaanmu."],
+          },
+          {
+            type: "checkbox",
+            content: [
+              "Aku sudah berani berpendapat di dalam kelas",
+              "Aku sudah berani bertanya dalam group mentoring",
+              "Aku sudah berani mengungkapkan pendapatku kepada di group mentoring",
+              "Aku sudah berani mengungkapkan pendapatku kepada mentor",
+            ],
+          },
+          {
+            type: "textarea",
+            content: [
+              "Jika ada poin yang belum kamu lakukan, coba refleksikan mengapa kamu belum melakukannya?",
+            ],
+          },
+          {
+            type: "textarea",
+            content: [
+              "Apa yang bisa lakukan untuk mengatasi hambatan tersebut?",
+            ],
+          },
+        ],
+        [
+          {
+            type: "textarea",
+            content: [
+              "Apa pendapat yang sudah kamu sampaikan ke dalam kelas / sesi kelompok?",
+            ],
+          },
+          {
+            type: "textarea",
+            content: ["Bagaimana respon orang lain atas pendapatmu?"],
+          },
+          {
+            type: "textarea",
+            content: ["apa yang kamu sukai dari caramu menyampaikan pendapat?"],
+          },
+          {
+            type: "textarea",
+            content: [
+              "apa yang masih ingin kamu perbaiki dari caramu menyampaikan pendapat?",
+            ],
+          },
+        ],
+      ],
     },
     {
       id: 4,
       name: "Tema 4: Pengelolaan dan Pengorganisiran Aktivitas Kantor",
-      journal: [],
+      journal: [[{ type: "journey", content: [] }]],
     },
     {
       id: 5,
       name: "Tema 5: Mengurus Sarana dan Prasarana Kantor",
-      journal: [],
+      journal: [[{ type: "journey", content: [] }]],
     },
     {
       id: 6,
       name: "Tema 6: Mengurus keuangan operasional kantor",
-      journal: [],
+      journal: [[{ type: "journey", content: [] }]],
     },
     {
       id: 7,
       name: "Tema 7: Membantu Kegiatan HR",
-      journal: [],
+      journal: [[{ type: "journey", content: [] }]],
     },
     {
       id: 8,
       name: "Tema 8: Persiapan Kerja",
-      journal: [],
+      journal: [[{ type: "journey", content: [] }]],
     },
   ],
 };

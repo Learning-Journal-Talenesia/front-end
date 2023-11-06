@@ -12,18 +12,17 @@ import {
 import { useQuestion } from "../../context/Question.context";
 import { useCallback, useMemo } from "react";
 
-const Habit = ({ number, questionIndex }) => {
+const Habit = () => {
   const { answer, onAnswerChange } = useQuestion();
-  const name = useMemo(
-    () => `${number - 1}-${questionIndex}`,
-    [number, questionIndex]
-  );
 
   const onChange = useCallback(
-    (name, value) => {
-      onAnswerChange(name, value);
+    (index, type, value) => {
+      onAnswerChange("habit", {
+        ...answer["habit"],
+        [index]: { ...answer["habit"][index], [type]: value },
+      });
     },
-    [onAnswerChange]
+    [answer, onAnswerChange]
   );
 
   const component = useMemo(() => {
@@ -44,10 +43,8 @@ const Habit = ({ number, questionIndex }) => {
                     <Input
                       size="sm"
                       type="text"
-                      value={answer[`${name}-${index}-0`]}
-                      onChange={(e) =>
-                        onChange(`${name}-${index}-0`, e.target.value)
-                      }
+                      value={answer["habit"][index]["bad"]}
+                      onChange={(e) => onChange(index, "bad", e.target.value)}
                     />
                   </FormControl>
                 </Td>
@@ -56,10 +53,8 @@ const Habit = ({ number, questionIndex }) => {
                     <Input
                       size="sm"
                       type="text"
-                      value={answer[`${name}-${index}-1`]}
-                      onChange={(e) =>
-                        onChange(`${name}-${index}-1`, e.target.value)
-                      }
+                      value={answer["habit"][index]["good"]}
+                      onChange={(e) => onChange(index, "good", e.target.value)}
                     />
                   </FormControl>
                 </Td>

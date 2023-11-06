@@ -2,32 +2,26 @@ import { FormControl, Input, ListItem, OrderedList } from "@chakra-ui/react";
 import { useQuestion } from "../../context/Question.context";
 import { useCallback, useMemo } from "react";
 
-const InputOL = ({ content, number, questionIndex }) => {
+const Reward = () => {
   const { answer, onAnswerChange } = useQuestion();
-  const name = useMemo(
-    () => `${number - 1}-${questionIndex}`,
-    [number, questionIndex]
-  );
-
   const onChange = useCallback(
-    (name, value) => {
-      onAnswerChange(name, value);
+    (index, value) => {
+      onAnswerChange("reward", { ...answer["reward"], [index]: value });
     },
-    [onAnswerChange]
+    [answer, onAnswerChange]
   );
 
   const component = useMemo(() => {
     return (
       <OrderedList>
-        {content.map((text, index) => (
+        {Array.from({ length: 3 }).map((_, index) => (
           <ListItem mb="3" key={index}>
             <FormControl>
               <Input
                 size="sm"
                 type="text"
-                placeholder={text}
-                value={answer[`${name}-${index}`]}
-                onChange={(e) => onChange(`${name}-${index}`, e.target.value)}
+                value={answer["reward"][index]}
+                onChange={(e) => onChange(index, e.target.value)}
               />
             </FormControl>
           </ListItem>
@@ -40,4 +34,4 @@ const InputOL = ({ content, number, questionIndex }) => {
   return component;
 };
 
-export default InputOL;
+export default Reward;
