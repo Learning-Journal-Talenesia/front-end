@@ -1,37 +1,45 @@
-import { createContext, useCallback, useContext, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import dummyData from "../dummyData/data";
+import { useParams } from "react-router-dom";
 
 const SidebarContext = createContext({
-  isOpen: false,
   isExpand: false,
-  onOpen: () => {},
-  onClose: () => {},
   onExpandClick: () => {},
+  sidebarTotalPage: [],
+  setSidebarTotalPage: () => {},
 });
 SidebarContext.displayName = "SidebarContext";
 
 const SidebarProvider = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isExpand, setIsExpand] = useState(false);
-
-  const onOpen = useCallback(() => {
-    setIsExpand(false);
-    setIsOpen(true);
-  }, []);
-
-  const onClose = useCallback(() => {
-    setIsExpand(false);
-    setIsOpen(false);
-  }, []);
+  const [sidebarTotalPage, setSidebarTotalPage] = useState(0);
+  const { theme_id } = useParams();
 
   const onExpandClick = useCallback(() => {
-    if (isOpen) {
-      setIsExpand(!isExpand);
-    }
-  }, [isExpand, isOpen]);
+    setIsExpand(!isExpand);
+  }, [isExpand]);
+
+  useEffect(() => {
+    const theme = dummyData.themes.filter(
+      ({ id }) => id === Number(theme_id)
+    )[0];
+    setSidebarTotalPage(theme.journal.length);
+  }, [setSidebarTotalPage, theme_id]);
 
   return (
     <SidebarContext.Provider
-      value={{ isOpen, isExpand, onOpen, onClose, onExpandClick }}
+      value={{
+        isExpand,
+        onExpandClick,
+        sidebarTotalPage,
+        setSidebarTotalPage,
+      }}
       {...props}
     />
   );

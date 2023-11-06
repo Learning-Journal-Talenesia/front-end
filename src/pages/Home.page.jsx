@@ -1,14 +1,7 @@
 import { Box, Button } from "@chakra-ui/react";
 import HeadingBox from "../components/HeadingBox";
-import { useEffect } from "react";
-import { useSidebar } from "../context/Sidebar.context";
 
 const HomePage = () => {
-  const { onClose } = useSidebar();
-  useEffect(() => {
-    onClose();
-  }, [onClose]);
-
   return (
     <>
       <HeadingBox>Kelas Intensif - Admin Perkantoran</HeadingBox>
