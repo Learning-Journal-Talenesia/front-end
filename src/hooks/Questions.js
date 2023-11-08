@@ -12,7 +12,6 @@ const useQuestions = (data) => {
       try {
         const res = await Question.getQuestionThemaId({ idThema, idUser });
         setQuestions(res.data);
-        console.log(res.data);
         useStoreQuestion.getState().setQuestions(res.data);
         setLoading(false);
       } catch (error) {

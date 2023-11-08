@@ -8,6 +8,14 @@ const Sidebar = () => {
   const { isOpen, isExpand, onExpandClick } = useSidebar();
   const questions = useStoreQuestion((state) => state.questions);
   const loading = useStoreQuestion((state) => state.loading);
+  const numberId = useStoreQuestion((state) => state.current);
+
+  if (questions.length > 0) {
+    const currentQuestion = questions.findIndex(
+      (question) => question._id === numberId
+    );
+    questions[currentQuestion].isActive = true;
+  }
 
   return (
     <Box
@@ -22,7 +30,7 @@ const Sidebar = () => {
       pt="70px"
       transition="0.3s ease"
     >
-      <Flex justifyContent="flex-end" mb="3">
+      <Flex justifyContent="flex-end" mt="10px" mb="3">
         <IconButton
           isRound={true}
           onClick={onExpandClick}
