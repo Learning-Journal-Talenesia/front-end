@@ -2,9 +2,12 @@ import { Box, Flex, IconButton } from "@chakra-ui/react";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import { useSidebar } from "../../context/Sidebar.context";
 import SidebarNumber from "./SidebarNumber";
+import useStoreQuestion from "../../lib/zustand/Question";
 
 const Sidebar = () => {
   const { isOpen, isExpand, onExpandClick } = useSidebar();
+  const questions = useStoreQuestion((state) => state.questions);
+  const loading = useStoreQuestion((state) => state.loading);
 
   return (
     <Box
@@ -33,9 +36,18 @@ const Sidebar = () => {
         justifyContent="flex-start"
         gap="8px"
       >
-        {Array.from({ length: 10 }).map((_, index) => (
-          <SidebarNumber number={index + 1} isActive={index === 0} />
-        ))}
+        {loading ? (
+          <Box>Loading...</Box>
+        ) : (
+          questions.map((question, index) => (
+            <SidebarNumber
+              key={question._id}
+              number={index + 1}
+              isActive={question.isActive}
+              _id={question._id}
+            />
+          ))
+        )}
       </Flex>
     </Box>
   );

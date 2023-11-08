@@ -1,6 +1,6 @@
 import { Center } from "@chakra-ui/react";
 
-const SidebarNumber = ({ number, isActive }) => {
+const SidebarNumber = ({ _id, number, isActive }) => {
   return (
     <Center
       w="40px"
@@ -12,6 +12,7 @@ const SidebarNumber = ({ number, isActive }) => {
       _hover={{
         bgColor: isActive ? "app.blue.active" : "app.purple.hover",
       }}
+      onClick={() => window.location.replace(`${_id}`)}
     >
       {number}
     </Center>
