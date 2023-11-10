@@ -1,6 +1,15 @@
 import { Center } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
 
 const SidebarNumber = ({ _id, number, isActive }) => {
+  const history = useHistory();
+
+  const handleClick = () => {
+    if (!isActive) {
+      history.push(`${_id}`);
+    }
+  };
+
   return (
     <Center
       w="40px"
@@ -12,7 +21,7 @@ const SidebarNumber = ({ _id, number, isActive }) => {
       _hover={{
         bgColor: isActive ? "app.blue.active" : "app.purple.hover",
       }}
-      onClick={() => window.location.replace(`${_id}`)}
+      onClick={handleClick}
     >
       {number}
     </Center>
