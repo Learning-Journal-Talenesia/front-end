@@ -7,8 +7,16 @@ import {
   Text,
 } from "@chakra-ui/react";
 import HeadingBox from "../components/HeadingBox";
+import { useHistory } from "react-router";
 
 const AboutClassView = () => {
+  const history = useHistory();
+  const handleNext = () => {
+    history.push("/kelas/tema/1");
+  };
+  const handleBack = () => {
+    history.push("/kelas/1/journal/1");
+  };
   return (
     <main>
       <Box marginTop={20} mx={40}>
@@ -45,8 +53,12 @@ const AboutClassView = () => {
           </OrderedList>
         </Box>
         <Box mt={10} display="flex" justifyContent="space-between">
-          <Button variant="secondary">Kembali</Button>
-          <Button variant="primary" px={8}>Lanjut</Button>
+          <Button onClick={() => handleBack()} variant="secondary">
+            Kembali
+          </Button>
+          <Button onClick={() => handleNext()} variant="primary" px={8}>
+            Lanjut
+          </Button>
         </Box>
       </Box>
     </main>

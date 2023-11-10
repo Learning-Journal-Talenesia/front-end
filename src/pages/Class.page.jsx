@@ -1,13 +1,20 @@
 import { Button, Center, Flex, Image, Select, Text } from "@chakra-ui/react";
 import HeadingBox from "../components/HeadingBox";
 import logoHero from "../assets/img/logo/logo-hero.svg";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 const ClassPage = () => {
   const { search } = useLocation();
   const queryParam = new URLSearchParams(search);
   const kelasID = queryParam.get("name");
   console.log(kelasID);
+
+  const history = useHistory();
+
+  const handleMulai = () => {
+    history.push(`/kelas/about/${kelasID}`);
+  };
+
   return (
     <Center h="calc(100vh - 70px)" flexDirection="column">
       <Image src={logoHero} w="330px" h="200px" mb="8"></Image>
@@ -20,7 +27,9 @@ const ClassPage = () => {
       </Select>
       <Flex gap="3">
         <Button variant="secondary">Kembali</Button>
-        <Button variant="primary">Mulai</Button>
+        <Button onClick={() => handleMulai()} variant="primary">
+          Mulai
+        </Button>
       </Flex>
     </Center>
   );
