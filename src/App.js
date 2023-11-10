@@ -13,14 +13,14 @@ import TemaClassPage from "./pages/TemaClass.page";
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <SidebarProvider>
-        <DashboardLayout>
-          <Router>
+      <Router>
+        <SidebarProvider>
+          <DashboardLayout>
             <Switch>
-              <Route path="/kelas/:kelas_id/journal/:journal_id/number/:number_id">
+              <Route path="/kelas/:kelas_id/journal/:thema_id/number/:number_id">
                 <JournalPage />
               </Route>
-              <Route path="/kelas/:kelas_id/journal/:journal_id">
+              <Route path="/kelas/:kelas_id/journal/:thema_id">
                 <KelasPage />
               </Route>
               <Route path="/admin">
@@ -33,9 +33,9 @@ function App() {
                 <TemaClassPage/>
               </Route>
             </Switch>
-          </Router>
-        </DashboardLayout>
-      </SidebarProvider>
+          </DashboardLayout>
+        </SidebarProvider>
+      </Router>
     </ChakraProvider>
   );
 }
