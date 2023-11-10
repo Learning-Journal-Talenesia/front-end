@@ -16,11 +16,11 @@ const JournalPage = () => {
   useEffect(() => {
     useStoreQuestion.getState().setCurrent(number_id);
   }, [number_id]);
-  const { questions, questionsLoading, questionsError } = useQuestions({
+  useQuestions({
     idThema: 1,
     idUser: 1,
   });
-  const { question, questionLoading, questionError } = useQuestion(number_id);
+  const { question, questionLoading } = useQuestion(number_id);
   return (
     <>
       {!questionLoading ? (
