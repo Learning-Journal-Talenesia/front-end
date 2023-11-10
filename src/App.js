@@ -7,6 +7,8 @@ import { SidebarProvider } from "./context/Sidebar.context";
 import JournalPage from "./pages/Journal.page";
 import KelasPage from "./pages/Class.page";
 import AdminPage from "./pages/Admin.page";
+import AboutClassPage from "./pages/AboutClass.page";
+import TemaClassPage from "./pages/TemaClass.page";
 
 function App() {
   return (
@@ -23,6 +25,12 @@ function App() {
               </Route>
               <Route path="/admin">
                 <AdminPage />
+              </Route>
+              <Route path="/kelas/about/:kelas_id">
+                <AboutClassPage />
+              </Route>
+              <Route path="/kelas/tema/:kelas_id">
+                <TemaClassPage/>
               </Route>
             </Switch>
           </DashboardLayout>
