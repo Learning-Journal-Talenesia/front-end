@@ -11,8 +11,8 @@ import HeadingBox from "../components/HeadingBox";
 const AboutClassView = () => {
   return (
     <main>
-      <Box marginTop={20} mx={40}>
-        <HeadingBox m="auto">Kelas intensif - Admin Perkantoran</HeadingBox>
+      <Box marginTop={20} mx={{ base: 10, md: 40 }}>
+        <HeadingBox m="auto" textAlign="center" >Kelas intensif - Admin Perkantoran</HeadingBox>
         <Heading
           size="sm"
           marginTop={2}
