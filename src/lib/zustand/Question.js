@@ -8,6 +8,13 @@ const useStoreQuestion = create((set) => ({
   setQuestions: (questions) => set({ questions }),
   setCurrent: (current) => set({ current }),
   loading: false,
+  // input questions
+  answer: {},
+  setAnswer: (inputQuestion) => {
+    set((state) => ({
+      answer: { ...state.answer, ...inputQuestion },
+    }));
+  },
 }));
 
 export default useStoreQuestion;

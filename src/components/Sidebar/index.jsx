@@ -3,18 +3,32 @@ import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import { useSidebar } from "../../context/Sidebar.context";
 import SidebarNumber from "./SidebarNumber";
 import useStoreQuestion from "../../lib/zustand/Question";
+import { useEffect } from "react";
 
 const Sidebar = () => {
   const { isOpen, isExpand, onExpandClick } = useSidebar();
   const questions = useStoreQuestion((state) => state.questions);
   const loading = useStoreQuestion((state) => state.loading);
   const numberId = useStoreQuestion((state) => state.current);
+  useEffect(() => {
+    if (questions.length > 0) {
+      const updatedQuestions = questions.map((question) => {
+        return {
+          ...question,
+          isActive: question._id === numberId,
+        };
+      });
 
-  if (questions.length > 0) {
-    const currentQuestion = questions.findIndex(
-      (question) => question._id === numberId
-    );
-    questions[currentQuestion].isActive = true;
+      // Check if the state needs to be updated before updating it
+      if (!isEqual(questions, updatedQuestions)) {
+        useStoreQuestion.getState().setQuestions(updatedQuestions);
+      }
+    }
+  }, [numberId, questions]);
+
+  // Utility function to check if two arrays are equal
+  function isEqual(arr1, arr2) {
+    return JSON.stringify(arr1) === JSON.stringify(arr2);
   }
 
   return (

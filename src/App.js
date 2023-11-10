@@ -11,9 +11,9 @@ import AdminPage from "./pages/Admin.page";
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <SidebarProvider>
-        <DashboardLayout>
-          <Router>
+      <Router>
+        <SidebarProvider>
+          <DashboardLayout>
             <Switch>
               <Route path="/kelas/:kelas_id/journal/:thema_id/number/:number_id">
                 <JournalPage />
@@ -25,9 +25,9 @@ function App() {
                 <AdminPage />
               </Route>
             </Switch>
-          </Router>
-        </DashboardLayout>
-      </SidebarProvider>
+          </DashboardLayout>
+        </SidebarProvider>
+      </Router>
     </ChakraProvider>
   );
 }
