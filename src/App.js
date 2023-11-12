@@ -17,20 +17,20 @@ function App() {
         <SidebarProvider>
           <DashboardLayout>
             <Switch>
-              <Route path="/kelas/:kelas_id/journal/:thema_id/number/:number_id">
+              <Route path="/user/:user_id/journal/:thema_id/number/:number_id">
                 <JournalPage />
               </Route>
-              <Route path="/kelas/:kelas_id/journal/:thema_id">
+              <Route path="/user/:user_id/journal/:thema_id">
                 <KelasPage />
               </Route>
               <Route path="/admin">
                 <AdminPage />
               </Route>
-              <Route path="/kelas/about/:kelas_id">
+              <Route path="/user/about/:user_id">
                 <AboutClassPage />
               </Route>
-              <Route path="/kelas/tema/:kelas_id">
-                <TemaClassPage/>
+              <Route path="/user/tema/:user_id">
+                <TemaClassPage />
               </Route>
             </Switch>
           </DashboardLayout>

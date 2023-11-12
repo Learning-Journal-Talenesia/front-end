@@ -7,13 +7,22 @@ import {
   Text,
 } from "@chakra-ui/react";
 import HeadingBox from "../components/HeadingBox";
+import { useHistory } from "react-router";
 
 const AboutClassPage = () => {
+  const history = useHistory();
+  const namaKelas = JSON.parse(localStorage.getItem("user")).namaKelas;
+  const handleNext = () => {
+    history.push("/user/tema/1");
+  };
+  const handleBack = () => {
+    history.push("/user/1/journal/1");
+  };
   return (
     <main>
       <Box marginTop={20} mx={{ base: 10, md: 40 }}>
         <HeadingBox m="auto" textAlign="center">
-          Kelas intensif - Admin Perkantoran
+          {namaKelas}
         </HeadingBox>
         <Heading
           size="sm"
@@ -47,8 +56,10 @@ const AboutClassPage = () => {
           </OrderedList>
         </Box>
         <Box mt={10} display="flex" justifyContent="space-between">
-          <Button variant="secondary">Kembali</Button>
-          <Button variant="primary" px={8}>
+          <Button onClick={() => handleBack()} variant="secondary">
+            Kembali
+          </Button>
+          <Button onClick={() => handleNext()} variant="primary" px={8}>
             Lanjut
           </Button>
         </Box>

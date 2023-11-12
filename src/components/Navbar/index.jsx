@@ -2,6 +2,7 @@ import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import LogoNav from "../../assets/img/logo/logo-nav.svg";
 
 const Navbar = () => {
+  const nama = JSON.parse(localStorage.getItem("user")).nama;
   return (
     <Flex
       justify="space-between"
@@ -17,7 +18,7 @@ const Navbar = () => {
       bgColor="white"
     >
       <Image src={LogoNav} w="100px"></Image>
-      <Text>Username</Text>
+      <Text>{nama}</Text>
     </Flex>
   );
 };

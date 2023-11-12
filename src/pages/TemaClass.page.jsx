@@ -1,9 +1,25 @@
 import { Box, Button, Heading } from "@chakra-ui/react";
 import HeadingBox from "../components/HeadingBox";
+import useStoreQuestion from "../lib/zustand/Question";
+import { useQuestions } from "../hooks/Questions";
+import { useHistory } from "react-router";
 
 const TemaClassPage = () => {
+  const history = useHistory();
+  const namaKelas = JSON.parse(localStorage.getItem("user")).namaKelas;
+  useQuestions({
+    idThema: 1,
+    idUser: 1,
+  });
+  const questions = useStoreQuestion((state) => state.questions);
+  const handleStart = () => {
+    history.push("/user/1/journal/1/number/" + questions[0]._id);
+  };
+  const handleBack = () => {
+    history.push("/user/about/1");
+  };
   return (
-    <main>
+    <>
       <Box
         height="100vh"
         display="flex"
@@ -11,9 +27,7 @@ const TemaClassPage = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <HeadingBox textAlign="center">
-          Kelas intensif - Admin Perkantoran
-        </HeadingBox>
+        <HeadingBox textAlign="center">{namaKelas}</HeadingBox>
         <Heading
           size="sm"
           marginTop={2}
@@ -23,13 +37,15 @@ const TemaClassPage = () => {
           Learning Journal
         </Heading>
         <Box mt={10} display="flex" justifyContent="space-between" width={250}>
-          <Button variant="secondary">Kembali</Button>
-          <Button variant="primary" px={8}>
-            Lanjut
+          <Button onClick={() => handleBack()} variant="secondary">
+            Kembali
+          </Button>
+          <Button onClick={() => handleStart()} variant="primary" px={8}>
+            Start
           </Button>
         </Box>
       </Box>
-    </main>
+    </>
   );
 };
 

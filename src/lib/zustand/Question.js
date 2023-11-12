@@ -9,11 +9,20 @@ const useStoreQuestion = create((set) => ({
   setCurrent: (current) => set({ current }),
   loading: false,
   // input questions
-  answer: {},
+  answer: !localStorage.getItem("answer")
+    ? {}
+    : JSON.parse(localStorage.getItem("answer")),
   setAnswer: (inputQuestion) => {
     set((state) => ({
       answer: { ...state.answer, ...inputQuestion },
     }));
+    localStorage.setItem(
+      "answer",
+      JSON.stringify({
+        ...useStoreQuestion.getState().answer,
+        ...inputQuestion,
+      })
+    );
   },
 }));
 
