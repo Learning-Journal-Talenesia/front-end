@@ -7,27 +7,35 @@ import { SidebarProvider } from "./context/Sidebar.context";
 import JournalPage from "./pages/Journal.page";
 import KelasPage from "./pages/Class.page";
 import AdminPage from "./pages/Admin.page";
+import AboutClassPage from "./pages/AboutClass.page";
+import TemaClassPage from "./pages/TemaClass.page";
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <SidebarProvider>
-        <DashboardLayout>
-          <Router>
+      <Router>
+        <SidebarProvider>
+          <DashboardLayout>
             <Switch>
-              <Route path="/kelas/:kelas_id/journal/:journal_id/number/:number_id">
+              <Route path="/user/:user_id/journal/:thema_id/number/:number_id">
                 <JournalPage />
               </Route>
-              <Route path="/kelas/:kelas_id/journal/:journal_id">
+              <Route path="/user/:user_id/journal/:thema_id">
                 <KelasPage />
               </Route>
               <Route path="/admin">
                 <AdminPage />
               </Route>
+              <Route path="/user/about/:user_id">
+                <AboutClassPage />
+              </Route>
+              <Route path="/user/tema/:user_id">
+                <TemaClassPage />
+              </Route>
             </Switch>
-          </Router>
-        </DashboardLayout>
-      </SidebarProvider>
+          </DashboardLayout>
+        </SidebarProvider>
+      </Router>
     </ChakraProvider>
   );
 }
