@@ -9,6 +9,8 @@ import KelasPage from "./pages/Class.page";
 import AdminPage from "./pages/Admin.page";
 import AboutClassPage from "./pages/AboutClass.page";
 import TemaClassPage from "./pages/TemaClass.page";
+import AdminStudentListPage from "./pages/AdminStudentList.page";
+import AdminStudentDetailPage from "./pages/AdminStudentDetail.page";
 
 function App() {
   return (
@@ -22,6 +24,12 @@ function App() {
               </Route>
               <Route path="/user/:user_id/journal/:thema_id">
                 <KelasPage />
+              </Route>
+              <Route path="/admin/class/:class_id/theme/:theme_id/student/:student_id">
+                <AdminStudentDetailPage />
+              </Route>
+              <Route path="/admin/class/:class_id/theme/:theme_id">
+                <AdminStudentListPage />
               </Route>
               <Route path="/admin">
                 <AdminPage />
