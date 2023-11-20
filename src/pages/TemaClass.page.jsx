@@ -17,7 +17,7 @@ const TemaClassPage = () => {
     history.push(`/user/1/journal/${thema_id}/number/` + questions[0]._id);
   };
   const handleBack = () => {
-    history.push("/user/about/1");
+    history.push(`/user/about/1/journal/${thema_id}`);
   };
   return (
     <>

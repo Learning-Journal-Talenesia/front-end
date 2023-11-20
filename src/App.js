@@ -26,10 +26,10 @@ function App() {
               <Route path="/admin">
                 <AdminPage />
               </Route>
-              <Route path="/user/about/:user_id">
+              <Route path="/user/about/:user_id/journal/:thema_id">
                 <AboutClassPage />
               </Route>
-              <Route path="/user/tema/:user_id">
+              <Route path="/user/tema/:user_id/journal/:thema_id">
                 <TemaClassPage />
               </Route>
             </Switch>

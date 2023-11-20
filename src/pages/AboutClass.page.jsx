@@ -14,7 +14,7 @@ const AboutClassPage = () => {
   const namaKelas = JSON.parse(localStorage.getItem("user")).namaKelas;
   const { thema_id } = useParams();
   const handleNext = () => {
-    history.push("/user/tema/1");
+    history.push(`/user/tema/1/journal/${thema_id}`);
   };
   const handleBack = () => {
     history.push(`/user/1/journal/${thema_id}`);
