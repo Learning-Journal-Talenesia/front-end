@@ -19,7 +19,7 @@ const ClassPage = () => {
   const history = useHistory();
 
   const handleMulai = () => {
-    history.push(`/user/about/${thema_id}`);
+    history.push(`/user/about/1/journal/${thema_id}`);
   };
 
   return (
