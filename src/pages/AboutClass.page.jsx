@@ -7,16 +7,17 @@ import {
   Text,
 } from "@chakra-ui/react";
 import HeadingBox from "../components/HeadingBox";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 
 const AboutClassPage = () => {
   const history = useHistory();
   const namaKelas = JSON.parse(localStorage.getItem("user")).namaKelas;
+  const { thema_id } = useParams();
   const handleNext = () => {
     history.push("/user/tema/1");
   };
   const handleBack = () => {
-    history.push("/user/1/journal/1");
+    history.push(`/user/1/journal/${thema_id}`);
   };
   return (
     <main>

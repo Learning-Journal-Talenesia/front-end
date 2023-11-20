@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Flex, Image, Text } from "@chakra-ui/react";
 import LogoNav from "../../assets/img/logo/logo-nav.svg";
 
 const Navbar = () => {

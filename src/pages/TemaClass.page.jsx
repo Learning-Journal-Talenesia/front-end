@@ -2,18 +2,19 @@ import { Box, Button, Heading } from "@chakra-ui/react";
 import HeadingBox from "../components/HeadingBox";
 import useStoreQuestion from "../lib/zustand/Question";
 import { useQuestions } from "../hooks/Questions";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 
 const TemaClassPage = () => {
   const history = useHistory();
+  const { thema_id } = useParams();
   const namaKelas = JSON.parse(localStorage.getItem("user")).namaKelas;
   useQuestions({
-    idThema: 1,
+    idThema: thema_id,
     idUser: 1,
   });
   const questions = useStoreQuestion((state) => state.questions);
   const handleStart = () => {
-    history.push("/user/1/journal/1/number/" + questions[0]._id);
+    history.push(`/user/1/journal/${thema_id}/number/` + questions[0]._id);
   };
   const handleBack = () => {
     history.push("/user/about/1");

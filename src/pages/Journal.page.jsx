@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSidebar } from "../context/Sidebar.context";
 import HeadingBox from "../components/HeadingBox";
-import { Box, Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { useQuestion, useQuestions } from "../hooks/Questions";
 import TypeCondition from "../components/TypeInputQuestions/TypeInput";
