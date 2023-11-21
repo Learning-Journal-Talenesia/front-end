@@ -7,17 +7,20 @@ import { useHistory, useParams } from "react-router";
 const TemaClassPage = () => {
   const history = useHistory();
   const { thema_id } = useParams();
+  const { user_id } = useParams();
   const namaKelas = JSON.parse(localStorage.getItem("user")).namaKelas;
   useQuestions({
     idThema: thema_id,
-    idUser: 1,
+    idUser: user_id,
   });
   const questions = useStoreQuestion((state) => state.questions);
   const handleStart = () => {
-    history.push(`/user/1/journal/${thema_id}/number/` + questions[0]._id);
+    history.push(
+      `/user/${user_id}/journal/${thema_id}/number/` + questions[0]._id
+    );
   };
   const handleBack = () => {
-    history.push(`/user/about/1/journal/${thema_id}`);
+    history.push(`/user/about/${user_id}/journal/${thema_id}`);
   };
   return (
     <>
