@@ -5,42 +5,38 @@ import useStoreQuestion from "../../lib/zustand/Question";
 
 const TypeCondition = ({ type, question, idQuestion }) => {
   const [value, setValue] = useState("");
-  const [inputQuestion, setInputQuestion] = useState("");
-  console.log("input question", inputQuestion);
-
-  const oldData = useStoreQuestion((state) => state.answer);
-  console.log(oldData);
-  const oldDataQuestion = oldData[idQuestion];
+  const [inputQuestion, setInputQuestion] = useState({});
+  const zustandStore = useStoreQuestion.getState();
+  const oldDataAnswer = zustandStore.answer[question.question[0]] || [];
 
   useEffect(() => {
-    if (oldDataQuestion) {
-      setValue(oldDataQuestion);
-      setInputQuestion(oldDataQuestion);
+    if (oldDataAnswer) {
+      setValue(oldDataAnswer);
+      setInputQuestion({ [question.question[0]]: oldDataAnswer });
     }
-  }, [oldDataQuestion]);
+  }, [oldDataAnswer]);
 
   const onChange = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
 
-    let updatedInputQuestion = {};
-    if (question.inputType === "checkbox") {
-      // Use an array to store the selected checkbox values
-      const selectedCheckboxValues = inputQuestion[e.target.name] || [];
+    let updatedInputQuestion;
 
-      // Update the array based on the checked state
-      if (e.target.checked) {
-        selectedCheckboxValues.push(e.target.value);
-      } else {
-        selectedCheckboxValues.splice(
-          selectedCheckboxValues.indexOf(e.target.value),
-          1
-        );
-      }
+    if (type === "checkbox") {
+      const { name, checked, value } = e.target;
+
+      // Copy the existing array or create a new one if it doesn't exist
+      const currentArray = Array.isArray(inputQuestion[name])
+        ? inputQuestion[name]
+        : [];
+
+      // Update the array based on checkbox status
+      const updatedArray = checked
+        ? [...currentArray, value]
+        : currentArray.filter((item) => item !== value);
 
       updatedInputQuestion = {
         ...inputQuestion,
-        [e.target.name]: selectedCheckboxValues,
+        [name]: updatedArray,
       };
     } else {
       updatedInputQuestion = {
@@ -50,12 +46,19 @@ const TypeCondition = ({ type, question, idQuestion }) => {
     }
 
     setInputQuestion(updatedInputQuestion);
-    setValue(e.target.value);
+
+    // Update the Zustand store with the new value or array
+    zustandStore.updateAnswer(
+      question.question[0],
+      type === "checkbox"
+        ? updatedInputQuestion[question.question[0]]
+        : e.target.value
+    );
   };
 
   const onClear = () => {
     setValue("");
-    setInputQuestion("");
+    setInputQuestion({});
   };
 
   const renderCheckboxInput = () => (
@@ -65,7 +68,7 @@ const TypeCondition = ({ type, question, idQuestion }) => {
         <Stack key={index}>
           <Checkbox
             name={question.question[0]}
-            defaultChecked={oldDataQuestion && oldDataQuestion.includes(value)}
+            defaultChecked={oldDataAnswer.includes(value)}
             onChange={onChange}
             value={value}
           >
@@ -87,7 +90,7 @@ const TypeCondition = ({ type, question, idQuestion }) => {
           cols="20"
           rows="10"
           onChange={onChange}
-          value={oldDataQuestion || value}
+          value={value}
         ></Textarea>
       </Box>
     </Box>
@@ -102,7 +105,7 @@ const TypeCondition = ({ type, question, idQuestion }) => {
           type="text"
           name={question.question[0]}
           onChange={onChange}
-          value={oldDataQuestion || value}
+          value={value}
         />
       </Box>
     </Box>
