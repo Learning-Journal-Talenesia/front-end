@@ -31,8 +31,6 @@ const ButtonQuestion = ({
       .filter((key) => isNaN(Number(key)))
       .map((key) => ({ [key]: data[key] }));
 
-    console.log(arrData);
-
     const submit = {
       idThema: thema_id,
       thema: answerLocal.namaKelas,
