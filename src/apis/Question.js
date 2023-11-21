@@ -17,6 +17,14 @@ const Question = {
       throw error;
     }
   },
+  async submitQuestion(data) {
+    try {
+      const res = await AxiosInstance.post(`/qna/`, data);
+      return res.data;
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 export default Question;

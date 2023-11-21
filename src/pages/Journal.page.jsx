@@ -13,13 +13,14 @@ const JournalPage = () => {
     onOpen();
   }, [onOpen]);
   const { number_id } = useParams();
+  const { user_id } = useParams();
   const { thema_id } = useParams();
   useEffect(() => {
     useStoreQuestion.getState().setCurrent(number_id);
   }, [number_id]);
   useQuestions({
     idThema: thema_id,
-    idUser: 1,
+    idUser: user_id,
   });
   const { question, questionLoading } = useQuestion(number_id);
   return (
