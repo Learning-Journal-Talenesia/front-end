@@ -25,22 +25,25 @@ const ButtonQuestion = ({
 
   const onSubmit = () => {
     const data = useStoreQuestion.getState().answer;
-    console.log(data);
-    var arrData = Object.keys(data).map(function (key) {
-      return { [key]: data[key] };
-    });
+
+    // Filter out entries with numeric keys
+    const arrData = Object.keys(data)
+      .filter((key) => isNaN(Number(key)))
+      .map((key) => ({ [key]: data[key] }));
+
+    console.log(arrData);
+
     const submit = {
       idThema: thema_id,
       thema: answerLocal.namaKelas,
       idUser: user_id,
       userName: answerLocal.nama,
-      qna: arrData.map((item) => {
-        return {
-          q: Object.keys(item)[0],
-          a: Object.values(item)[0],
-        };
-      }),
+      qna: arrData.map((item) => ({
+        q: Object.keys(item)[0],
+        a: Object.values(item)[0],
+      })),
     };
+
     const result = Question.submitQuestion(submit);
     console.log(result);
   };

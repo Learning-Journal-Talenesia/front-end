@@ -24,6 +24,8 @@ const useStoreQuestion = create((set) => ({
       })
     );
   },
+  updateAnswer: (questionName, newValue) =>
+    set((state) => ({ answer: { ...state.answer, [questionName]: newValue } })),
 }));
 
 export default useStoreQuestion;
