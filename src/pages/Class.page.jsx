@@ -14,12 +14,13 @@ const ClassPage = () => {
     localStorage.setItem("user", JSON.stringify(user));
   }
   const { thema_id } = useParams();
+  const { user_id } = useParams();
   const namaKelas = JSON.parse(localStorage.getItem("user")).namaKelas;
 
   const history = useHistory();
 
   const handleMulai = () => {
-    history.push(`/user/about/1/journal/${thema_id}`);
+    history.push(`/user/about/${user_id}/journal/${thema_id}`);
   };
 
   return (
@@ -28,9 +29,9 @@ const ClassPage = () => {
       <HeadingBox>{!user.namaKelas ? namaKelas : user.namaKelas}</HeadingBox>
       <Text my="3">Learning Journal</Text>
       <Select placeholder="Mentor" w="unset" mb="8">
-        <option value="mentor1">Mentor 1</option>
-        <option value="mentor2">Mentor 2</option>
-        <option value="mentor3">Mentor 3</option>
+        <option value="mentor1">Rafiansyah</option>
+        <option value="mentor2">M Rafi</option>
+        <option value="mentor3">Darman</option>
       </Select>
       <Flex gap="3">
         <Button variant="secondary">Kembali</Button>

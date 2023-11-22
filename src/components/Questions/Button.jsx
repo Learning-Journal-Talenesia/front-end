@@ -3,6 +3,7 @@ import { Box, Button } from "@chakra-ui/react";
 import useStoreQuestion from "../../lib/zustand/Question";
 import { useHistory, useParams } from "react-router-dom";
 import Question from "../../apis/Question";
+import Swal from "sweetalert2";
 
 const ButtonQuestion = ({
   onClear,
@@ -42,8 +43,12 @@ const ButtonQuestion = ({
       })),
     };
 
-    const result = Question.submitQuestion(submit);
-    console.log(result);
+    Question.submitQuestion(submit).then(() => {
+      Swal.fire("Terimakasih sudah mengisi!", "Saved!", "success").then(() => {
+        localStorage.removeItem("answer");
+        window.location.href = "/success";
+      });
+    });
   };
 
   useEffect(() => {
@@ -88,7 +93,6 @@ const ButtonQuestion = ({
           onClick={() => {
             onPass(inputQuestion);
             onSubmit();
-            localStorage.removeItem("answer");
           }}
         >
           Submit

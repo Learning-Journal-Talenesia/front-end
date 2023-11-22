@@ -9,6 +9,7 @@ import KelasPage from "./pages/Class.page";
 import AdminPage from "./pages/Admin.page";
 import AboutClassPage from "./pages/AboutClass.page";
 import TemaClassPage from "./pages/TemaClass.page";
+import Terimakasih from "./pages/Terimakasih";
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
               </Route>
               <Route path="/user/tema/:user_id/journal/:thema_id">
                 <TemaClassPage />
+              </Route>
+              <Route path="/success">
+                <Terimakasih />
               </Route>
             </Switch>
           </DashboardLayout>

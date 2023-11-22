@@ -13,11 +13,12 @@ const AboutClassPage = () => {
   const history = useHistory();
   const namaKelas = JSON.parse(localStorage.getItem("user")).namaKelas;
   const { thema_id } = useParams();
+  const { user_id } = useParams();
   const handleNext = () => {
-    history.push(`/user/tema/1/journal/${thema_id}`);
+    history.push(`/user/tema/${user_id}/journal/${thema_id}`);
   };
   const handleBack = () => {
-    history.push(`/user/1/journal/${thema_id}`);
+    history.push(`/user/${user_id}/journal/${thema_id}`);
   };
   return (
     <main>
